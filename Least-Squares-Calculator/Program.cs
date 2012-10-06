@@ -25,11 +25,23 @@ namespace Least_Squares_Calculator {
             var indSumPower = SummationPowered(ind);
             var crossSum = SummationMulti(ind, de);
 
-            var lssResult = CalculateLeastSquaresFit(n, indSummation, deSummation, indSumPower, crossSum, uncertainSumPow);
+            var lsfResult = CalculateLeastSquaresFit(n, indSummation, deSummation, indSumPower, crossSum, uncertainSumPow);
 
             //now construct the equation-strings for returning∑
+            var lsfStrings = GenerateLSFEquationStrings(n, ind, de, uncertain, indSummation, deSummation, uncertainSumPow, indSumPower, crossSum, lsfResult.Sy);
 
+            //add the constants generated to the end of the equations in question
+            lsfStrings.IndSum += "=" + indSummation;
+            lsfStrings.IndPowerSum += "=" + indSumPower;
+            lsfStrings.DeSum += "=" + deSummation;
+            lsfStrings.InterceptEquation += "=" + lsfResult.YIntercept;
+            lsfStrings.InterceptUncertEquation += "=" + lsfResult.Sb;
+            lsfStrings.SlopeEquation += "=" + lsfResult.Slope;
+            lsfStrings.SlopeUncertEquation += "=" + lsfResult.Sm;
+            lsfStrings.UncertPowerSum += "=" + uncertainSumPow;
+            lsfStrings.YUncertEquation += "=" + lsfResult.Sy;
 
+            //now write the strings to file
 
 
         }
@@ -88,7 +100,8 @@ namespace Least_Squares_Calculator {
             return retStruct;
         }
 
-        static LSFStrings GenerateLSFEquationStrings(int n, IList<double> ind, IList<double> de, IEnumerable<double> uncertain){
+        //this probably shouldn't be its own method considering all the parameters, but it is for the sake of cleanliness of the main() method
+        static LSFStrings GenerateLSFEquationStrings(int n, IList<double> ind, IList<double> de, IEnumerable<double> uncertain, double indSum, double deSum, double uncertSumPow, double indSumPow, double crossSum, double sy){
             var retStruct = new LSFStrings();
             retStruct.IndSum = "∑x=";
             retStruct.DeSum = "∑y=";
@@ -120,6 +133,18 @@ namespace Least_Squares_Calculator {
                 retStruct.UncertPowerSum += (d + "^2+");
             }
             retStruct.UncertPowerSum = retStruct.UncertPowerSum.Remove(retStruct.UncertPowerSum.Count() - 1);
+
+            //now for the second part
+            retStruct.SlopeEquation = "m={"+n+"*"+crossSum+"-"+indSum+"*"+deSum+"} over {"+n+"*"+indSumPow+"-"+indSum+"^2}";
+
+            retStruct.InterceptEquation = "b={" + indSum + "^2*" + deSum + "-" + indSum + "*" + crossSum + "} over {" + n + "*" + indSumPow + "-" + indSum + "^2}";
+
+            retStruct.YUncertEquation = "s_y=sqrt{{" + uncertSumPow + "} over {" + n + "-2}}";
+
+            retStruct.InterceptUncertEquation = "s_b=" + sy + "*sqrt{{" + indSumPow + "} over {" + n + "*" + indSumPow + "-" + indSum + "^2}}";
+
+            retStruct.SlopeUncertEquation = "s_m=" + sy + "*sqrt{{" + n + "} over {" + n + "*" + indSumPow + "-" + indSum + "^2}}";
+
             return retStruct;
         }
 
@@ -137,6 +162,13 @@ namespace Least_Squares_Calculator {
             public string CrossSum;
             public string IndPowerSum;
             public string UncertPowerSum;
+
+            public string SlopeEquation;
+            public string InterceptEquation;
+
+            public string YUncertEquation;
+            public string InterceptUncertEquation;
+            public string SlopeUncertEquation;
         }
     }
 }
