@@ -34,6 +34,7 @@ namespace Least_Squares_Calculator {
             lsfStrings.IndSum += "=" + indSummation;
             lsfStrings.IndPowerSum += "=" + indSumPower;
             lsfStrings.DeSum += "=" + deSummation;
+            lsfStrings.CrossSum += "=" + crossSum;
             lsfStrings.InterceptEquation += "=" + lsfResult.YIntercept;
             lsfStrings.InterceptUncertEquation += "=" + lsfResult.Sb;
             lsfStrings.SlopeEquation += "=" + lsfResult.Slope;
@@ -43,7 +44,19 @@ namespace Least_Squares_Calculator {
 
             //now write the strings to file
 
-
+            var writer = new StreamWriter("results.txt", false);
+            writer.WriteLine("N="+n);
+            writer.WriteLine(lsfStrings.IndSum);
+            writer.WriteLine(lsfStrings.IndPowerSum);
+            writer.WriteLine(lsfStrings.DeSum);
+            writer.WriteLine(lsfStrings.CrossSum);
+            writer.WriteLine(lsfStrings.UncertPowerSum);
+            writer.WriteLine(lsfStrings.SlopeEquation);
+            writer.WriteLine(lsfStrings.InterceptEquation);
+            writer.WriteLine(lsfStrings.YUncertEquation);
+            writer.WriteLine(lsfStrings.InterceptUncertEquation);
+            writer.WriteLine(lsfStrings.SlopeUncertEquation);
+            writer.Close();
         }
 
 
@@ -136,13 +149,9 @@ namespace Least_Squares_Calculator {
 
             //now for the second part
             retStruct.SlopeEquation = "m={"+n+"*"+crossSum+"-"+indSum+"*"+deSum+"} over {"+n+"*"+indSumPow+"-"+indSum+"^2}";
-
             retStruct.InterceptEquation = "b={" + indSum + "^2*" + deSum + "-" + indSum + "*" + crossSum + "} over {" + n + "*" + indSumPow + "-" + indSum + "^2}";
-
             retStruct.YUncertEquation = "s_y=sqrt{{" + uncertSumPow + "} over {" + n + "-2}}";
-
             retStruct.InterceptUncertEquation = "s_b=" + sy + "*sqrt{{" + indSumPow + "} over {" + n + "*" + indSumPow + "-" + indSum + "^2}}";
-
             retStruct.SlopeUncertEquation = "s_m=" + sy + "*sqrt{{" + n + "} over {" + n + "*" + indSumPow + "-" + indSum + "^2}}";
 
             return retStruct;
