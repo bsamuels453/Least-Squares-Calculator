@@ -17,19 +17,20 @@ namespace Least_Squares_Calculator {
             if (ind.Count != uncertain.Count)
                 throw new Exception("there are a different number of values and uncertanties");
 
+            //calculate relevant LSF constants
             int n = ind.Count;
-
             var indSummation = Summation(ind);
             var deSummation = Summation(de);
-
-            var uncertainSumSquare = SummationSquared(uncertain);
-
-            var indSumSquare = SummationSquared(ind);
+            var uncertainSumPow = SummationPowered(uncertain);
+            var indSumPower = SummationPowered(ind);
             var crossSum = SummationMulti(ind, de);
 
-            var lssResult = CalculateLeastSquaresFit(n, indSummation, deSummation, indSumSquare, crossSum, uncertainSumSquare);
+            var lssResult = CalculateLeastSquaresFit(n, indSummation, deSummation, indSumPower, crossSum, uncertainSumPow);
 
-            int f = 5;
+            //now construct the equation-strings for returning∑
+
+
+
 
         }
 
@@ -60,7 +61,7 @@ namespace Least_Squares_Calculator {
             return result;
         }
 
-        static double SummationSquared(IEnumerable<double> li){
+        static double SummationPowered(IEnumerable<double> li){
             double result = 0;
             foreach (var d in li){
                 result += d * d;
@@ -76,14 +77,49 @@ namespace Least_Squares_Calculator {
             return result;
         }
 
-        static LSFResults CalculateLeastSquaresFit(int n, double indSummation, double deSummation, double indSumSquare, double crossSum, double uncertSumSquare){
+        static LSFResults CalculateLeastSquaresFit(int n, double indSummation, double deSummation, double indSumPow, double crossSum, double uncertSumPow){
             var retStruct = new LSFResults();
-            retStruct.Slope = (n * crossSum - indSummation * deSummation) / (n * indSumSquare - Math.Pow(indSummation, 2));
-            retStruct.YIntercept = (indSumSquare * deSummation - indSummation * crossSum) / (n * indSumSquare - Math.Pow(indSummation, 2));
+            retStruct.Slope = (n * crossSum - indSummation * deSummation) / (n * indSumPow - Math.Pow(indSummation, 2));
+            retStruct.YIntercept = (indSumPow * deSummation - indSummation * crossSum) / (n * indSumPow - Math.Pow(indSummation, 2));
 
-            retStruct.Sy = Math.Sqrt(uncertSumSquare / (n - 2));
-            retStruct.Sb = retStruct.Sy * Math.Sqrt(indSumSquare / (n * indSumSquare - Math.Pow(indSummation, 2)));
-            retStruct.Sm = retStruct.Sy * Math.Sqrt(n / (n * indSumSquare - Math.Pow(indSummation, 2)));
+            retStruct.Sy = Math.Sqrt(uncertSumPow / (n - 2));
+            retStruct.Sb = retStruct.Sy * Math.Sqrt(indSumPow / (n * indSumPow - Math.Pow(indSummation, 2)));
+            retStruct.Sm = retStruct.Sy * Math.Sqrt(n / (n * indSumPow - Math.Pow(indSummation, 2)));
+            return retStruct;
+        }
+
+        static LSFStrings GenerateLSFEquationStrings(int n, IList<double> ind, IList<double> de, IEnumerable<double> uncertain){
+            var retStruct = new LSFStrings();
+            retStruct.IndSum = "∑x=";
+            retStruct.DeSum = "∑y=";
+            retStruct.CrossSum = "∑xy=";
+            retStruct.IndPowerSum = "∑x^2=";
+            retStruct.UncertPowerSum = "∑δy^2=";
+
+            foreach (var d in ind) {
+                retStruct.IndSum += (d + "+");
+            }
+            retStruct.IndSum = retStruct.IndSum.Remove(retStruct.IndSum.Count() - 1);
+
+            foreach (var d in de) {
+                retStruct.DeSum += (d + "+");
+            }
+            retStruct.DeSum = retStruct.DeSum.Remove(retStruct.DeSum.Count() - 1);
+
+            for (int i = 0; i < n; i++) {
+                retStruct.CrossSum += ind[i].ToString() + "*" + de[i].ToString() + "+";
+            }
+            retStruct.CrossSum = retStruct.CrossSum.Remove(retStruct.CrossSum.Count() - 1);
+
+            foreach (var d in ind) {
+                retStruct.IndPowerSum += (d + "^2+");
+            }
+            retStruct.IndPowerSum = retStruct.IndPowerSum.Remove(retStruct.IndPowerSum.Count() - 1);
+
+            foreach (var d in uncertain) {
+                retStruct.UncertPowerSum += (d + "^2+");
+            }
+            retStruct.UncertPowerSum = retStruct.UncertPowerSum.Remove(retStruct.UncertPowerSum.Count() - 1);
             return retStruct;
         }
 
@@ -93,6 +129,14 @@ namespace Least_Squares_Calculator {
             public double Sb;
             public double Slope;
             public double YIntercept;
+        }
+
+        struct LSFStrings{
+            public string IndSum;
+            public string DeSum;
+            public string CrossSum;
+            public string IndPowerSum;
+            public string UncertPowerSum;
         }
     }
 }
