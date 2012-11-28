@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 namespace Least_Squares_Calculator {
     class Program {
         static void Main(string[] args) {
+            var v = new LSFForm();
+            Application.Run(new LSFForm());
+
             var ind = ParseFileToNumList("independents.txt");
             var de = ParseFileToNumList("dependents.txt");
             var uncertain = ParseFileToNumList("uncertainties.txt");
