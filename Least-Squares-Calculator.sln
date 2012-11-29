@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Least-Squares-Calculator", "Least-Squares-Calculator\Least-Squares-Calculator.csproj", "{C442459F-0E87-4207-8A27-6FF562F620CC}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Least Squares Fit Calculator", "setup\Least Squares Fit Calculator.vdproj", "{5082C90F-6F1D-4778-B12D-A36EFC118184}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -13,6 +15,8 @@ Global
 		{C442459F-0E87-4207-8A27-6FF562F620CC}.Debug|x86.Build.0 = Debug|x86
 		{C442459F-0E87-4207-8A27-6FF562F620CC}.Release|x86.ActiveCfg = Release|x86
 		{C442459F-0E87-4207-8A27-6FF562F620CC}.Release|x86.Build.0 = Release|x86
+		{5082C90F-6F1D-4778-B12D-A36EFC118184}.Debug|x86.ActiveCfg = Debug
+		{5082C90F-6F1D-4778-B12D-A36EFC118184}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
