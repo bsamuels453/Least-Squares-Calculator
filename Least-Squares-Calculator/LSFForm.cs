@@ -14,7 +14,6 @@ namespace Least_Squares_Calculator{
             LibreFontsizeDrpDwn.SelectedItem = "16";
             LatexFontSizeDrpDwn.SelectedItem = "Normal";
             DataPointTextbox.Text = 1.ToString();
-
         }
 
         #region input handling
@@ -43,7 +42,7 @@ namespace Least_Squares_Calculator{
 
         void CalculateButClick(object sender, EventArgs e){
             string str;
-            if (IsVariableTableValid(out str)) {
+            if (IsVariableTableValid(out str)){
                 SetErrorText(str);
                 LeastSquaresFit.LSFInput input;
                 input.XValues = new List<double>();
@@ -58,10 +57,10 @@ namespace Least_Squares_Calculator{
                 }
 
                 var results = LeastSquaresFit.Calculate(input);
-                if (OutputFmtDrpDwn.SelectedItem.ToString() == "LibreOffice Math") {
+                if (OutputFmtDrpDwn.SelectedItem.ToString() == "LibreOffice Math"){
                     LibreConvert(ref results, int.Parse(LibreFontsizeDrpDwn.SelectedItem.ToString()));
                 }
-                if (OutputFmtDrpDwn.SelectedItem.ToString() == "LaTeX") {
+                if (OutputFmtDrpDwn.SelectedItem.ToString() == "LaTeX"){
                     LatexConvert(ref results, LatexFontSizeDrpDwn.SelectedItem.ToString());
                 }
                 textBox2.Text = results.IndSum;
@@ -81,45 +80,47 @@ namespace Least_Squares_Calculator{
         }
 
         #region copy stuff
-        private void Button2Click(object sender, EventArgs e) {
+
+        void Button2Click(object sender, EventArgs e){
             Clipboard.SetText(textBox2.Text);
         }
 
-        private void Button3Click(object sender, EventArgs e) {
+        void Button3Click(object sender, EventArgs e){
             Clipboard.SetText(textBox3.Text);
         }
 
-        private void Button5Click(object sender, EventArgs e) {
+        void Button5Click(object sender, EventArgs e){
             Clipboard.SetText(textBox5.Text);
         }
 
-        private void Button4Click(object sender, EventArgs e) {
+        void Button4Click(object sender, EventArgs e){
             Clipboard.SetText(textBox4.Text);
         }
 
-        private void Button7Click(object sender, EventArgs e) {
+        void Button7Click(object sender, EventArgs e){
             Clipboard.SetText(textBox7.Text);
         }
 
-        private void Button6Click(object sender, EventArgs e) {
+        void Button6Click(object sender, EventArgs e){
             Clipboard.SetText(textBox6.Text);
         }
 
-        private void Button9Click(object sender, EventArgs e) {
+        void Button9Click(object sender, EventArgs e){
             Clipboard.SetText(textBox9.Text);
         }
 
-        private void Button8Click(object sender, EventArgs e) {
+        void Button8Click(object sender, EventArgs e){
             Clipboard.SetText(textBox8.Text);
         }
 
-        private void Button11Click(object sender, EventArgs e) {
+        void Button11Click(object sender, EventArgs e){
             Clipboard.SetText(textBox11.Text);
         }
 
-        private void Button10Click(object sender, EventArgs e) {
+        void Button10Click(object sender, EventArgs e){
             Clipboard.SetText(textBox10.Text);
         }
+
         #endregion
 
         #endregion
@@ -148,12 +149,12 @@ namespace Least_Squares_Calculator{
                 }
 
                 //scientific notation
-                for (int col = 0; col < DataEntry.ColumnCount; col++) {
-                    string text = (string)(DataEntry[col, row].Value);
+                for (int col = 0; col < DataEntry.ColumnCount; col++){
+                    string text = (string) (DataEntry[col, row].Value);
                     text = text.Replace("*10^", "E");
 
                     double _;
-                    if (!double.TryParse(text, out _)) {
+                    if (!double.TryParse(text, out _)){
                         retText = "ERROR: Row " + row + "'s value needs to be a number.";
                         return false;
                     }
@@ -183,7 +184,7 @@ namespace Least_Squares_Calculator{
             data.SlopeUncertEquation = LatexConverter.ToLatex(data.SlopeUncertEquation, fontSize);
         }
 
-        static void LibreConvert(ref LeastSquaresFit.LSFStrings data, int fontSize) {
+        static void LibreConvert(ref LeastSquaresFit.LSFStrings data, int fontSize){
             data.IndSum = LibreMathConverter.EquationToLibre(data.IndSum, fontSize);
             data.IndPowerSum = LibreMathConverter.EquationToLibre(data.IndPowerSum, fontSize);
             data.DeSum = LibreMathConverter.EquationToLibre(data.DeSum, fontSize);
@@ -196,7 +197,7 @@ namespace Least_Squares_Calculator{
             data.SlopeUncertEquation = LibreMathConverter.EquationToLibre(data.SlopeUncertEquation, fontSize);
         }
 
-        private void ClearButClick(object sender, EventArgs e) {
+        void ClearButClick(object sender, EventArgs e){
             textBox2.Text = "";
             textBox3.Text = "";
             textBox5.Text = "";

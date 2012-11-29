@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
+﻿#region
+
+using System;
 using System.Windows.Forms;
 
-namespace Least_Squares_Calculator {
+#endregion
+
+namespace Least_Squares_Calculator{
     internal class Program{
-        [STAThreadAttribute]
+        [STAThread]
         static void Main(string[] args){
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

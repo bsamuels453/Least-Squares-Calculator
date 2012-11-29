@@ -6,17 +6,17 @@ using System.Linq;
 
 #endregion
 
-namespace Least_Squares_Calculator {
+namespace Least_Squares_Calculator{
     /// <summary>
     ///   helper class for the manipulation of equations stored in strings
     /// </summary>
-    internal static class ExpressionManip {
+    internal static class ExpressionManip{
         #region SplitType enum
 
         /// <summary>
         ///   Used to specify how to split an equation, with respect to order of operations. Since exponents have a slightly different order of operations, they are separate from normal splitting operations. For the curious, this manifests in the expression 5*6^2. If one wanted to get the expression on the left side of exponent using the normal LeftSide rule, the split method owuld return "5*6". Using the ExponentLeft splitting type, only "6" is returned.
         /// </summary>
-        public enum SplitType {
+        public enum SplitType{
             RightSide,
             LeftSide,
             ExponentRight,
@@ -25,27 +25,27 @@ namespace Least_Squares_Calculator {
 
         #endregion
 
-        public static EquationSegment SplitEquation(string equation, int splitIndex, SplitType sideToGet) {
+        public static EquationSegment SplitEquation(string equation, int splitIndex, SplitType sideToGet){
             var retStruct = new EquationSegment();
             char beginningBracket;
             char endingBracket;
             int increment;
             int limitValue;
 
-            if (splitIndex == 0 && (sideToGet == SplitType.LeftSide || sideToGet == SplitType.ExponentLeft)) {
+            if (splitIndex == 0 && (sideToGet == SplitType.LeftSide || sideToGet == SplitType.ExponentLeft)){
                 retStruct.EndIndex = 0;
                 retStruct.StartIndex = 0;
                 retStruct.Segment = "";
                 return retStruct;
             }
 
-            if (sideToGet == SplitType.LeftSide || sideToGet == SplitType.ExponentLeft) {
+            if (sideToGet == SplitType.LeftSide || sideToGet == SplitType.ExponentLeft){
                 beginningBracket = ')';
                 endingBracket = '(';
                 increment = -1;
                 limitValue = -1;
             }
-            else {
+            else{
                 beginningBracket = '(';
                 endingBracket = ')';
                 increment = 1;
@@ -54,36 +54,36 @@ namespace Least_Squares_Calculator {
 
 
             //the left side is enclosed with brackets, so the only way to terminate the left side is with an opening bracket
-            if (equation[splitIndex + increment] == beginningBracket) {
+            if (equation[splitIndex + increment] == beginningBracket){
                 int totalBrackets = 1;
                 int index = splitIndex + increment;
-                while (totalBrackets != 0) {
+                while (totalBrackets != 0){
                     index += increment;
                     if (index == limitValue)
                         throw new Exception("formatting error, brackets not set up properly");
 
-                    if (equation[index] == beginningBracket) {
+                    if (equation[index] == beginningBracket){
                         totalBrackets++;
                     }
-                    if (equation[index] == endingBracket) {
+                    if (equation[index] == endingBracket){
                         totalBrackets--;
                     }
                 }
 
 
-                if (sideToGet == SplitType.LeftSide || sideToGet == SplitType.ExponentLeft) {
+                if (sideToGet == SplitType.LeftSide || sideToGet == SplitType.ExponentLeft){
                     retStruct.EndIndex = splitIndex;
                     retStruct.StartIndex = index;
                     retStruct.Segment = equation.Substring(retStruct.StartIndex, retStruct.EndIndex - retStruct.StartIndex);
                 }
-                else {
+                else{
                     retStruct.EndIndex = index + 1;
                     retStruct.StartIndex = splitIndex + 1;
                     retStruct.Segment = equation.Substring(retStruct.StartIndex, retStruct.EndIndex - retStruct.StartIndex);
                 }
                 return retStruct;
             }
-            else {
+            else{
                 //for this case, order of operations must be respected because of lack of brackets
                 //there are two ways for a termination to occur, either one of the terminating characters is reached
                 //or an unexpected endingbracket is reached, such as in the case (x/y)
@@ -93,56 +93,56 @@ namespace Least_Squares_Calculator {
                 char[] terminatingChars = new char[0];
                 bool ignoreCharacterTermination = false;
                 bool ignoreBracketTermination = false;
-                if (sideToGet == SplitType.LeftSide) {
-                    terminatingChars = new[] { '=', '+', '-' };
+                if (sideToGet == SplitType.LeftSide){
+                    terminatingChars = new[]{'=', '+', '-'};
                 }
-                if (sideToGet == SplitType.RightSide) {
-                    terminatingChars = new[] { '=', '+', '-', '*', '/' };
+                if (sideToGet == SplitType.RightSide){
+                    terminatingChars = new[]{'=', '+', '-', '*', '/'};
                 }
-                if (sideToGet == SplitType.ExponentRight) {
-                    terminatingChars = new[] { '=', '+', '-', '*', '/' };
-                    if (equation[index] == beginningBracket) { //this expression may be always false
+                if (sideToGet == SplitType.ExponentRight){
+                    terminatingChars = new[]{'=', '+', '-', '*', '/'};
+                    if (equation[index] == beginningBracket){ //this expression may be always false
                         ignoreCharacterTermination = true;
                     }
-                    else {
+                    else{
                         index++; //we want to completely ignore the first character because of negatives
                         ignoreBracketTermination = true;
                     }
                 }
-                if (sideToGet == SplitType.ExponentLeft) {
-                    terminatingChars = new[] { '=', '+', '-', '*', '/' };
+                if (sideToGet == SplitType.ExponentLeft){
+                    terminatingChars = new[]{'=', '+', '-', '*', '/'};
                 }
 
                 int totalBrackets = 0;
-                if (index < equation.Count()) {
-                    while (true) {
+                if (index < equation.Count()){
+                    while (true){
                         //first try character based termination
-                        if (terminatingChars.Contains(equation[index])) {
-                            if (!ignoreCharacterTermination) {
+                        if (terminatingChars.Contains(equation[index])){
+                            if (!ignoreCharacterTermination){
                                 break;
                             }
                         }
 
                         //now try bracket based termination
-                        if (equation[index] == beginningBracket) {
-                            if (!ignoreBracketTermination) {
+                        if (equation[index] == beginningBracket){
+                            if (!ignoreBracketTermination){
                                 totalBrackets++;
                             }
                         }
 
-                        if (equation[index] == endingBracket) {
-                            if (!ignoreBracketTermination) {
+                        if (equation[index] == endingBracket){
+                            if (!ignoreBracketTermination){
                                 totalBrackets--;
                             }
                         }
 
-                        if (totalBrackets < 0) {
+                        if (totalBrackets < 0){
                             //index -= increment;
                             break;
                         }
 
                         //nothing interesting, loop again
-                        if (index == limitValue - increment) {
+                        if (index == limitValue - increment){
                             index += increment;
                             break;
                         }
@@ -150,12 +150,12 @@ namespace Least_Squares_Calculator {
                         index += increment;
                     }
                 }
-                if (sideToGet == SplitType.LeftSide || sideToGet == SplitType.ExponentLeft) {
+                if (sideToGet == SplitType.LeftSide || sideToGet == SplitType.ExponentLeft){
                     retStruct.EndIndex = splitIndex;
                     retStruct.StartIndex = index + 1;
                     retStruct.Segment = equation.Substring(retStruct.StartIndex, retStruct.EndIndex - retStruct.StartIndex);
                 }
-                else {
+                else{
                     retStruct.EndIndex = index;
                     retStruct.StartIndex = splitIndex + 1;
                     retStruct.Segment = equation.Substring(retStruct.StartIndex, retStruct.EndIndex - retStruct.StartIndex);
@@ -169,9 +169,9 @@ namespace Least_Squares_Calculator {
         /// </summary>
         /// <param name="equation"> </param>
         /// <returns> </returns>
-        public static string ConvertEquationIntsToFloats(string equation) {
+        public static string ConvertEquationIntsToFloats(string equation){
             bool hasDecimal = false;
-            for (int si = 1; si < equation.Count(); si++) {
+            for (int si = 1; si < equation.Count(); si++){
                 if (char.IsDigit(equation[si]))
                     continue;
 
@@ -186,12 +186,12 @@ namespace Least_Squares_Calculator {
                     )
                     continue;
 
-                if (equation[si] == '.') {
+                if (equation[si] == '.'){
                     hasDecimal = true;
                     continue;
                 }
 
-                if (hasDecimal) {
+                if (hasDecimal){
                     hasDecimal = false;
                     continue;
                 }
@@ -199,7 +199,7 @@ namespace Least_Squares_Calculator {
                 equation = equation.Insert(si, ".0");
                 hasDecimal = true;
             }
-            if (char.IsDigit(equation.Last()) && !hasDecimal) {
+            if (char.IsDigit(equation.Last()) && !hasDecimal){
                 equation = equation.Insert(equation.Count(), ".0");
             }
             return equation;
@@ -211,20 +211,20 @@ namespace Least_Squares_Calculator {
         /// <param name="symbolAliases"> </param>
         /// <param name="equation"> </param>
         /// <returns> </returns>
-        public static string ConvertSymbolsIntoAliases(Dictionary<string, string> symbolAliases, string equation) {
+        public static string ConvertSymbolsIntoAliases(Dictionary<string, string> symbolAliases, string equation){
             //generate the equation with all of our new variable names
-            var aliasEquation = (string)equation.Clone();
+            var aliasEquation = (string) equation.Clone();
 
             //todo: get rid of 3 character limitation on symbol names
-            for (int i = 0; i < aliasEquation.Count(); i++) {
+            for (int i = 0; i < aliasEquation.Count(); i++){
                 int splitLen = 3;
-                if (i + 3 > aliasEquation.Count()) {
+                if (i + 3 > aliasEquation.Count()){
                     splitLen = aliasEquation.Count() - i;
                 }
                 string split = aliasEquation.Substring(i, splitLen);
 
-                foreach (var reference in symbolAliases) {
-                    if (split.Contains(reference.Key)) {
+                foreach (var reference in symbolAliases){
+                    if (split.Contains(reference.Key)){
                         split = split.Replace(reference.Key, reference.Value);
                         aliasEquation = aliasEquation.Remove(i, splitLen);
                         aliasEquation = aliasEquation.Insert(i, split);
@@ -234,11 +234,11 @@ namespace Least_Squares_Calculator {
             }
 
             //sanity check
-            foreach (var reference in symbolAliases) {
-                if (reference.Value.Count() != 1) {
+            foreach (var reference in symbolAliases){
+                if (reference.Value.Count() != 1){
                     throw new Exception("one of the aliases were longer than one character");
                 }
-                if (reference.Key == "l" || reference.Key == "o" || reference.Key == "g" || reference.Key == "n") {
+                if (reference.Key == "l" || reference.Key == "o" || reference.Key == "g" || reference.Key == "n"){
                     //throw new Exception("cannot use letters l, o, g, or n");
                 }
             }
@@ -251,15 +251,15 @@ namespace Least_Squares_Calculator {
         /// <param name="symbolAliases"> </param>
         /// <param name="equation"> </param>
         /// <returns> </returns>
-        public static string ConvertAliasesIntoSymbols(Dictionary<string, string> symbolAliases, string equation) {
-            string str = (string)equation.Clone();
+        public static string ConvertAliasesIntoSymbols(Dictionary<string, string> symbolAliases, string equation){
+            string str = (string) equation.Clone();
 
             //xxx this method is bound by the 1 character alias limit
-            for (int chr = 0; chr < str.Count(); chr++) {
-                foreach (var reference in symbolAliases) {
+            for (int chr = 0; chr < str.Count(); chr++){
+                foreach (var reference in symbolAliases){
                     if (chr >= str.Count())
                         break;
-                    if (str[chr] == reference.Value[0]) {
+                    if (str[chr] == reference.Value[0]){
                         str = str.Remove(chr, 1);
                         str = str.Insert(chr, reference.Key);
                         chr += reference.Key.Count();
@@ -274,8 +274,8 @@ namespace Least_Squares_Calculator {
         /// </summary>
         /// <param name="equation"> </param>
         /// <returns> </returns>
-        public static Dictionary<string, string> GenerateEquationAliases(string equation) {
-            var splittableEquation = (String)equation.Clone();
+        public static Dictionary<string, string> GenerateEquationAliases(string equation){
+            var splittableEquation = (String) equation.Clone();
 
             splittableEquation = splittableEquation.Replace('+', ' ');
             splittableEquation = splittableEquation.Replace('-', ' ');
@@ -303,9 +303,9 @@ namespace Least_Squares_Calculator {
 
             //make sure that none of the symbol names contain substrings of other symbol names because 
             //that will shit up EVERYTHING when it comes time to convert between symbols and aliases
-            foreach (var symbol in symbolList) {
-                foreach (var sconstant in symbolList) {
-                    if (symbol.Contains(sconstant) && symbol != sconstant) {
+            foreach (var symbol in symbolList){
+                foreach (var sconstant in symbolList){
+                    if (symbol.Contains(sconstant) && symbol != sconstant){
                         throw new Exception("one of the variables substrings that can be confused as other variables");
                     }
                 }
@@ -324,14 +324,14 @@ namespace Least_Squares_Calculator {
             const string alphabet = "abcfhijkmpqrstuvwxyz";
 
             //todo: get rid of 3 character limitation on symbol names
-            for (int i = 0; i < symbolList.Count(); i++) {
-                if (symbolList[i].Count() > 3) {
+            for (int i = 0; i < symbolList.Count(); i++){
+                if (symbolList[i].Count() > 3){
                     throw new Exception("variable names may not be longer than 3 characters");
                 }
-                try {
+                try{
                     symbolAliases.Add(symbolList[i], alphabet[i].ToString());
                 }
-                catch (ArgumentException) {
+                catch (ArgumentException){
                 }
             }
             return symbolAliases;
@@ -339,7 +339,7 @@ namespace Least_Squares_Calculator {
 
         #region Nested type: EquationSegment
 
-        public struct EquationSegment {
+        public struct EquationSegment{
             public int EndIndex;
             public string Segment;
             public int StartIndex;

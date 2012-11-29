@@ -1,7 +1,6 @@
 ﻿namespace Least_Squares_Calculator{
     internal class LatexConverter{
-
-        public static string ToLatex(string expression, string fontSize="Normal"){
+        public static string ToLatex(string expression, string fontSize = "Normal"){
             //convert fractions
             int pos;
             while ((pos = expression.IndexOf('/')) != -1){
@@ -38,7 +37,7 @@
 
             string prefix;
             const string suffix = "}$";
-            
+
             //todo: enum this
             switch (fontSize){
                 case "Tiny":
@@ -79,7 +78,7 @@
                     prefix = "${";
                     break;
             }
-            return  prefix+expression + suffix;
+            return prefix + expression + suffix;
         }
     }
 }
