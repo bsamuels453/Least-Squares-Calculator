@@ -99,7 +99,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Least-Squares-Calculator_TemporaryKey.pfx" />
     <None Include="Properties\app.manifest" />
   </ItemGroup>
   <ItemGroup>
