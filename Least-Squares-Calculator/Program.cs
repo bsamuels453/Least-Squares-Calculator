@@ -7,6 +7,7 @@ using System.Windows.Forms;
 
 namespace Least_Squares_Calculator {
     internal class Program{
+        [STAThreadAttribute]
         static void Main(string[] args){
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

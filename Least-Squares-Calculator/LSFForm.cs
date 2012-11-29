@@ -80,6 +80,48 @@ namespace Least_Squares_Calculator{
             }
         }
 
+        #region copy stuff
+        private void Button2Click(object sender, EventArgs e) {
+            Clipboard.SetText(textBox2.Text);
+        }
+
+        private void Button3Click(object sender, EventArgs e) {
+            Clipboard.SetText(textBox3.Text);
+        }
+
+        private void Button5Click(object sender, EventArgs e) {
+            Clipboard.SetText(textBox5.Text);
+        }
+
+        private void Button4Click(object sender, EventArgs e) {
+            Clipboard.SetText(textBox4.Text);
+        }
+
+        private void Button7Click(object sender, EventArgs e) {
+            Clipboard.SetText(textBox7.Text);
+        }
+
+        private void Button6Click(object sender, EventArgs e) {
+            Clipboard.SetText(textBox6.Text);
+        }
+
+        private void Button9Click(object sender, EventArgs e) {
+            Clipboard.SetText(textBox9.Text);
+        }
+
+        private void Button8Click(object sender, EventArgs e) {
+            Clipboard.SetText(textBox8.Text);
+        }
+
+        private void Button11Click(object sender, EventArgs e) {
+            Clipboard.SetText(textBox11.Text);
+        }
+
+        private void Button10Click(object sender, EventArgs e) {
+            Clipboard.SetText(textBox10.Text);
+        }
+        #endregion
+
         #endregion
 
         void SetErrorText(string str){
@@ -153,6 +195,7 @@ namespace Least_Squares_Calculator{
             data.InterceptUncertEquation = LibreMathConverter.EquationToLibre(data.InterceptUncertEquation, fontSize);
             data.SlopeUncertEquation = LibreMathConverter.EquationToLibre(data.SlopeUncertEquation, fontSize);
         }
+
 
     }
 }

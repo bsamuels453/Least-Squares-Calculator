@@ -208,6 +208,7 @@
             this.button10.TabIndex = 32;
             this.button10.Text = "Copy";
             this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.Button10Click);
             // 
             // textBox10
             // 
@@ -234,6 +235,7 @@
             this.button11.TabIndex = 29;
             this.button11.Text = "Copy";
             this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.Button11Click);
             // 
             // textBox11
             // 
@@ -260,6 +262,7 @@
             this.button8.TabIndex = 26;
             this.button8.Text = "Copy";
             this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.Button8Click);
             // 
             // textBox8
             // 
@@ -286,6 +289,7 @@
             this.button9.TabIndex = 23;
             this.button9.Text = "Copy";
             this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.Button9Click);
             // 
             // textBox9
             // 
@@ -312,6 +316,7 @@
             this.button6.TabIndex = 20;
             this.button6.Text = "Copy";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.Button6Click);
             // 
             // textBox6
             // 
@@ -338,6 +343,7 @@
             this.button7.TabIndex = 17;
             this.button7.Text = "Copy";
             this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.Button7Click);
             // 
             // textBox7
             // 
@@ -364,6 +370,7 @@
             this.button4.TabIndex = 14;
             this.button4.Text = "Copy";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.Button4Click);
             // 
             // textBox4
             // 
@@ -390,6 +397,7 @@
             this.button5.TabIndex = 11;
             this.button5.Text = "Copy";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.Button5Click);
             // 
             // textBox5
             // 
@@ -416,6 +424,7 @@
             this.button3.TabIndex = 8;
             this.button3.Text = "Copy";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.Button3Click);
             // 
             // textBox3
             // 
@@ -442,6 +451,7 @@
             this.button2.TabIndex = 5;
             this.button2.Text = "Copy";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.Button2Click);
             // 
             // textBox2
             // 
