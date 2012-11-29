@@ -554,6 +554,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(531, 489);
             this.Controls.Add(this.LatexFontSizeDrpDwn);
             this.Controls.Add(this.ClearBut);
@@ -568,6 +570,7 @@
             this.Controls.Add(this.DataPointTextbox);
             this.Controls.Add(this.label1);
             this.Name = "LSFForm";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Least Squares Fit Calculator";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
