@@ -196,6 +196,18 @@ namespace Least_Squares_Calculator{
             data.SlopeUncertEquation = LibreMathConverter.EquationToLibre(data.SlopeUncertEquation, fontSize);
         }
 
-
+        private void ClearButClick(object sender, EventArgs e) {
+            textBox2.Text = "";
+            textBox3.Text = "";
+            textBox5.Text = "";
+            textBox4.Text = "";
+            textBox7.Text = "";
+            textBox6.Text = "";
+            textBox9.Text = "";
+            textBox8.Text = "";
+            textBox11.Text = "";
+            textBox10.Text = "";
+            DataPointTextbox.Text = 0.ToString();
+        }
     }
 }

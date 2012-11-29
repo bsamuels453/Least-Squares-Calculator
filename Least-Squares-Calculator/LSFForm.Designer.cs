@@ -478,6 +478,7 @@
             this.ClearBut.TabIndex = 16;
             this.ClearBut.Text = "Clear";
             this.ClearBut.UseVisualStyleBackColor = true;
+            this.ClearBut.Click += new System.EventHandler(this.ClearButClick);
             // 
             // DataEntry
             // 
