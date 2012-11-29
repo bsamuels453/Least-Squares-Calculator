@@ -85,6 +85,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExpressionManip.cs" />
+    <Compile Include="LatexConverter.cs" />
+    <Compile Include="LeastSquaresFit.cs" />
+    <Compile Include="LibreMathConverter.cs" />
     <Compile Include="LSFForm.cs">
       <SubType>Form</SubType>
     </Compile>
