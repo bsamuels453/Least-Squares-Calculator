@@ -35,16 +35,7 @@ namespace Least_Squares_Calculator{
 
         #region input handling
 
-        void TextBox1TextChanged(object sender, EventArgs e){
-            int n;
-            if (!int.TryParse(DataPointTextbox.Text, out n)){
-                SetErrorText("Invalid value for number of samples");
-            }
-            else{
-                SetErrorText("");
-            }
-            DataEntry.RowCount = n;
-        }
+
 
         void OutputFmtDrpDwnSelectedValueChanged(object sender, EventArgs e){
             if (OutputFmtDrpDwn.SelectedItem.ToString() == "LibreOffice Math"){
@@ -226,6 +217,17 @@ namespace Least_Squares_Calculator{
             textBox11.Text = "";
             textBox10.Text = "";
             DataPointTextbox.Text = 0.ToString();
+        }
+
+        private void GenerateButtonClick(object sender, EventArgs e) {
+            int n;
+            if (!int.TryParse(DataPointTextbox.Text, out n)) {
+                SetErrorText("Invalid value for number of samples");
+            }
+            else {
+                SetErrorText("");
+            }
+            DataEntry.RowCount = n;
         }
     }
 }
