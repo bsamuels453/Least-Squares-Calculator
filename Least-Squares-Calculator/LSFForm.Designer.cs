@@ -85,6 +85,7 @@ namespace Least_Squares_Calculator {
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LatexFontSizeDrpDwn = new System.Windows.Forms.ComboBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataEntry)).BeginInit();
             this.SuspendLayout();
@@ -105,7 +106,6 @@ namespace Least_Squares_Calculator {
             this.DataPointTextbox.Size = new System.Drawing.Size(53, 20);
             this.DataPointTextbox.TabIndex = 1;
             this.DataPointTextbox.WordWrap = false;
-            this.DataPointTextbox.TextChanged += new System.EventHandler(this.TextBox1TextChanged);
             // 
             // OutputFmtDrpDwn
             // 
@@ -114,7 +114,7 @@ namespace Least_Squares_Calculator {
             this.OutputFmtDrpDwn.Items.AddRange(new object[] {
             "LibreOffice Math",
             "LaTeX"});
-            this.OutputFmtDrpDwn.Location = new System.Drawing.Point(298, 83);
+            this.OutputFmtDrpDwn.Location = new System.Drawing.Point(298, 69);
             this.OutputFmtDrpDwn.Name = "OutputFmtDrpDwn";
             this.OutputFmtDrpDwn.Size = new System.Drawing.Size(106, 21);
             this.OutputFmtDrpDwn.TabIndex = 8;
@@ -123,7 +123,7 @@ namespace Least_Squares_Calculator {
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(295, 67);
+            this.label5.Location = new System.Drawing.Point(295, 53);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(74, 13);
             this.label5.TabIndex = 9;
@@ -132,7 +132,7 @@ namespace Least_Squares_Calculator {
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(407, 67);
+            this.label6.Location = new System.Drawing.Point(407, 53);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(86, 13);
             this.label6.TabIndex = 11;
@@ -151,14 +151,14 @@ namespace Least_Squares_Calculator {
             "20",
             "22",
             "24"});
-            this.LibreFontsizeDrpDwn.Location = new System.Drawing.Point(410, 83);
+            this.LibreFontsizeDrpDwn.Location = new System.Drawing.Point(410, 69);
             this.LibreFontsizeDrpDwn.Name = "LibreFontsizeDrpDwn";
             this.LibreFontsizeDrpDwn.Size = new System.Drawing.Size(91, 21);
             this.LibreFontsizeDrpDwn.TabIndex = 10;
             // 
             // CalculateBut
             // 
-            this.CalculateBut.Location = new System.Drawing.Point(299, 125);
+            this.CalculateBut.Location = new System.Drawing.Point(299, 111);
             this.CalculateBut.Name = "CalculateBut";
             this.CalculateBut.Size = new System.Drawing.Size(203, 38);
             this.CalculateBut.TabIndex = 12;
@@ -171,7 +171,7 @@ namespace Least_Squares_Calculator {
             this.ErrorText.AutoSize = true;
             this.ErrorText.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ErrorText.ForeColor = System.Drawing.Color.Red;
-            this.ErrorText.Location = new System.Drawing.Point(132, 20);
+            this.ErrorText.Location = new System.Drawing.Point(169, 9);
             this.ErrorText.Name = "ErrorText";
             this.ErrorText.Size = new System.Drawing.Size(133, 24);
             this.ErrorText.TabIndex = 13;
@@ -210,9 +210,9 @@ namespace Least_Squares_Calculator {
             this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.textBox2);
             this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Location = new System.Drawing.Point(12, 216);
+            this.groupBox1.Location = new System.Drawing.Point(12, 202);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(414, 259);
+            this.groupBox1.Size = new System.Drawing.Size(414, 227);
             this.groupBox1.TabIndex = 14;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Results";
@@ -489,7 +489,7 @@ namespace Least_Squares_Calculator {
             // 
             // ClearBut
             // 
-            this.ClearBut.Location = new System.Drawing.Point(435, 169);
+            this.ClearBut.Location = new System.Drawing.Point(435, 155);
             this.ClearBut.Name = "ClearBut";
             this.ClearBut.Size = new System.Drawing.Size(66, 25);
             this.ClearBut.TabIndex = 16;
@@ -508,15 +508,16 @@ namespace Least_Squares_Calculator {
             this.Column1,
             this.Column2,
             this.Column3});
-            this.DataEntry.Location = new System.Drawing.Point(15, 68);
+            this.DataEntry.Location = new System.Drawing.Point(15, 54);
             this.DataEntry.MultiSelect = false;
             this.DataEntry.Name = "DataEntry";
             this.DataEntry.RowHeadersVisible = false;
-            this.DataEntry.RowHeadersWidth = 35;
+            this.DataEntry.RowHeadersWidth = 30;
             this.DataEntry.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.DataEntry.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             this.DataEntry.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.DataEntry.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.DataEntry.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.DataEntry.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.DataEntry.ShowCellErrors = false;
             this.DataEntry.ShowCellToolTips = false;
@@ -530,21 +531,21 @@ namespace Least_Squares_Calculator {
             this.Column1.HeaderText = "X Values";
             this.Column1.Name = "Column1";
             this.Column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Column1.Width = 90;
+            this.Column1.Width = 83;
             // 
             // Column2
             // 
             this.Column2.HeaderText = "Y Values";
             this.Column2.Name = "Column2";
             this.Column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Column2.Width = 90;
+            this.Column2.Width = 83;
             // 
             // Column3
             // 
             this.Column3.HeaderText = "Y Uncertainty";
             this.Column3.Name = "Column3";
             this.Column3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Column3.Width = 90;
+            this.Column3.Width = 83;
             // 
             // LatexFontSizeDrpDwn
             // 
@@ -561,11 +562,21 @@ namespace Least_Squares_Calculator {
             "LARGE",
             "huge",
             "Huge"});
-            this.LatexFontSizeDrpDwn.Location = new System.Drawing.Point(410, 83);
+            this.LatexFontSizeDrpDwn.Location = new System.Drawing.Point(410, 69);
             this.LatexFontSizeDrpDwn.Name = "LatexFontSizeDrpDwn";
             this.LatexFontSizeDrpDwn.Size = new System.Drawing.Size(91, 21);
             this.LatexFontSizeDrpDwn.TabIndex = 17;
             this.LatexFontSizeDrpDwn.Visible = false;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(74, 25);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(89, 23);
+            this.button1.TabIndex = 18;
+            this.button1.Text = "Generate Cells";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.GenerateButtonClick);
             // 
             // LSFForm
             // 
@@ -574,6 +585,7 @@ namespace Least_Squares_Calculator {
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(531, 489);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.LatexFontSizeDrpDwn);
             this.Controls.Add(this.ClearBut);
             this.Controls.Add(this.groupBox1);
@@ -640,9 +652,10 @@ namespace Least_Squares_Calculator {
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button ClearBut;
         private System.Windows.Forms.DataGridView DataEntry;
+        private System.Windows.Forms.ComboBox LatexFontSizeDrpDwn;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.ComboBox LatexFontSizeDrpDwn;
+        private System.Windows.Forms.Button button1;
     }
 }
