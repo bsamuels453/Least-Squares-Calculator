@@ -508,6 +508,7 @@ namespace Least_Squares_Calculator {
             this.Column1,
             this.Column2,
             this.Column3});
+            this.DataEntry.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.DataEntry.Location = new System.Drawing.Point(15, 54);
             this.DataEntry.MultiSelect = false;
             this.DataEntry.Name = "DataEntry";
