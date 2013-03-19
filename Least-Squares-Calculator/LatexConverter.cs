@@ -58,38 +58,38 @@ namespace Least_Squares_Calculator{
             //todo: enum this
             switch (fontSize){
                 case "Tiny":
-                    prefix = @"${\tiny ";
+                    prefix = @"\tiny ${ ";
                     break;
                 case "Script Size":
-                    prefix = @"${\scriptsize ";
+                    prefix = @"\scriptsize ${ ";
                     break;
                 case "Footnote Size":
-                    prefix = @"${\footnotesize ";
+                    prefix = @"\footnotesize ${ ";
                     break;
 
                 case "Small":
-                    prefix = @"${\small ";
+                    prefix = @"\small ${ ";
                     break;
 
                 case "Normal":
-                    prefix = @"${\normalsize ";
+                    prefix = @"\normalsize ${ ";
                     break;
                 case "large":
-                    prefix = @"${\large ";
+                    prefix = @"\large ${ ";
                     break;
 
                 case "Large":
-                    prefix = @"${\Large ";
+                    prefix = @"\Large ${ ";
                     break;
 
                 case "LARGE":
-                    prefix = @"${\LARGE ";
+                    prefix = @"\LARGE ${ ";
                     break;
                 case "huge":
-                    prefix = @"${\huge ";
+                    prefix = @"\huge ${ ";
                     break;
                 case "Huge":
-                    prefix = @"${\Huge ";
+                    prefix = @"\Huge ${ ";
                     break;
                 default:
                     prefix = "${";
