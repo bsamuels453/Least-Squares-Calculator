@@ -21,3 +21,5 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 Benjamin Samuels
 bsamuels453@gmail.com
 12/15/2012
+
+[![githalytics.com alpha](https://cruel-carlota.pagodabox.com/bf7018f7e07d14ab8ba67ac163131136 "githalytics.com")](http://githalytics.com/bsamuels453/Least-Squares-Calculator)
